@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — Radium Bike &amp; Parts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/img/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="logo" href="index.html" aria-label="Radium Bike — Startseite"><img src="assets/img/logo.png" alt="Radium Bike"></a>
+    <nav aria-label="Hauptnavigation">
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="index.html#radium">Radium</a></li>
+        <li><a href="index.html#bikes">Bikes</a></li>
+        <li><a href="index.html#parts">Parts</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section legal">
+    <div class="container">
+      <a class="back-link" href="index.html">← Zurück zur Startseite</a>
+      <h1 class="section-title display">Impressum</h1>
+      <div class="divider"></div>
+
+      <div class="legal-body">
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <p>
+          Radium Bike and Parts<br>
+          Inhaber: Willi Wigger<br>
+          Holsteinischer Kamp 80<br>
+          22081 Hamburg
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href="tel:+491723791599">0172 / 379 15 99</a><br>
+          E-Mail: <a href="mailto:willi@radiumbike.de">willi@radiumbike.de</a>
+        </p>
+
+        <h2>Umsatzsteuer</h2>
+        <p><span class="todo">[Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG — falls vorhanden. Bei Kleinunternehmerregelung ggf. entfernen.]</span></p>
+
+        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <p>
+          Willi Wigger<br>
+          Holsteinischer Kamp 80<br>
+          22081 Hamburg
+        </p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <p class="legal-note">Prototyp-Hinweis: Rechtsform, Umsatzsteuer-Angaben und Formulierungen vor Veröffentlichung prüfen lassen.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <ul class="footer-nav">
+      <li><a href="index.html#radium">Radium</a></li>
+      <li><a href="index.html#bikes">Bikes</a></li>
+      <li><a href="index.html#parts">Parts</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="footer-legal">
+      <p>© Radium Bike and Parts · Holsteinischer Kamp 80 · Hamburg</p>
+      <a href="impressum.html" aria-current="page">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navList = document.querySelector('.nav-list');
+  const hamburger = document.querySelector('.hamburger');
+  hamburger.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>
