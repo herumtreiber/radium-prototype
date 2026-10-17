@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie — Radium Bike &amp; Parts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/img/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="logo" href="index.html" aria-label="Radium Bike — Startseite"><img src="assets/img/logo.png" alt="Radium Bike"></a>
+    <nav aria-label="Hauptnavigation">
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="index.html#radium">Radium</a></li>
+        <li><a href="index.html#bikes" class="active" aria-current="page">Bikes</a></li>
+        <li><a href="index.html#parts">Parts</a></li>
+        <li><a href="index.html#shop">Shop</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section gallery-page">
+    <div class="container">
+      <a class="back-link" href="index.html#bikes">← Zurück zur Startseite</a>
+      <h1 class="section-title display">Galerie</h1>
+      <div class="divider"></div>
+      <p class="section-sub">Bikes, die ich in den letzten Jahren aufgebaut habe. Zum Vergrößern antippen.</p>
+      <ul class="gallery"></ul>
+      <noscript><p class="section-sub">Bitte JavaScript aktivieren, um die Galerie zu sehen.</p></noscript>
+      <div class="gallery-cta">
+        <p>Aktuell zu haben?</p>
+        <a class="btn" href="https://www.kleinanzeigen.de/pro/radiumbike" target="_blank" rel="noopener">Zum Kleinanzeigen-Shop ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="lightbox" aria-label="Bild-Ansicht">
+  <figure>
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </figure>
+  <button class="lb-btn lb-close" type="button" aria-label="Schließen">✕</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Vorheriges Bild">←</button>
+  <button class="lb-btn lb-next" type="button" aria-label="Nächstes Bild">→</button>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-legal">
+      <p>© Radium Bike and Parts · Holsteinischer Kamp 80 · Hamburg</p>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/bikes.js"></script>
+<script>
+  const navList = document.querySelector('.nav-list');
+  const hamburger = document.querySelector('.hamburger');
+  hamburger.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  // Gallery: render every bike from assets/js/bikes.js
+  document.querySelector('.gallery').innerHTML = window.RADIUM_BIKES.map(b => `
+        <li><button class="gallery-item" type="button" data-full="assets/img/${b.file}.jpg" data-name="${b.name}" aria-label="${b.name} vergrößern">
+          <img src="assets/img/thumbs/${b.file}.jpg" alt="${b.alt}" loading="lazy" width="${Math.round(b.w * 0.4)}" height="${Math.round(b.h * 0.4)}">
+          <span class="gallery-name">${b.name}</span>
+        </button></li>`).join('');
+
+  // Gallery lightbox
+  const lb = document.querySelector('.lightbox');
+  const lbImg = lb.querySelector('img');
+  const lbCap = lb.querySelector('figcaption');
+  const items = [...document.querySelectorAll('.gallery-item')];
+  let idx = 0;
+  function show(i) {
+    idx = (i + items.length) % items.length;
+    const it = items[idx];
+    lbImg.src = it.dataset.full;
+    lbImg.alt = it.querySelector('img').alt;
+    lbCap.textContent = it.dataset.name;
+  }
+  items.forEach((it, i) => it.addEventListener('click', () => { show(i); lb.showModal(); }));
+  lb.querySelector('.lb-close').addEventListener('click', () => lb.close());
+  lb.querySelector('.lb-prev').addEventListener('click', () => show(idx - 1));
+  lb.querySelector('.lb-next').addEventListener('click', () => show(idx + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+</script>
+</body>
+</html>
