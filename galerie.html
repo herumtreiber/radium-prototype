@@ -24,7 +24,7 @@
         <li><a href="index.html#bikes" class="active" aria-current="page">Bikes</a></li>
         <li><a href="index.html#parts">Parts</a></li>
         <li><a href="index.html#shop">Shop</a></li>
-        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Kontakt</a></li>
       </ul>
     </nav>
   </div>
@@ -78,8 +78,8 @@
 
   // Gallery: render every bike from assets/js/bikes.js
   document.querySelector('.gallery').innerHTML = window.RADIUM_BIKES.map(b => `
-        <li><button class="gallery-item" type="button" data-full="assets/img/${b.file}.jpg" data-name="${b.name}" aria-label="${b.name} vergrößern">
-          <img src="assets/img/thumbs/${b.file}.jpg" alt="${b.alt}" loading="lazy" width="${Math.round(b.w * 0.4)}" height="${Math.round(b.h * 0.4)}">
+        <li><button class="gallery-item" type="button" data-full="assets/img/webp/${b.file}-${b.w}.webp" data-name="${b.name}" aria-label="${b.name} vergrößern">
+          ${window.radiumPicture(b, '(max-width:720px) 50vw, 280px', `alt="${b.alt}" loading="lazy"`)}
           <span class="gallery-name">${b.name}</span>
         </button></li>`).join('');
 

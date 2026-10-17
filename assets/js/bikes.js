@@ -1,7 +1,7 @@
 /*
   Bike photos for the carousel (index.html) and the gallery (galerie.html).
-  To add a bike: put a 1600px version in assets/img/ and a 640px version in
-  assets/img/thumbs/ (same file name), then add one line below.
+  To add a bike: put a 1600px JPEG in assets/img/, run scripts/make_webp.sh,
+  then add one line below.
   The gallery shows every entry in this order; the carousel picks 6 at random.
 */
 window.RADIUM_BIKES = [
@@ -32,3 +32,9 @@ window.RADIUM_BIKES = [
   { file: 'pink-mtb',           name: 'Radium MTB, pink',   alt: 'Pinkes Mountainbike mit weißen Reifen',       w: 1600, h: 902 },
   { file: 'detail-radium-pink', name: 'Radium MTB · Detail', alt: 'Radium-Schriftzug am pinken Rahmen',         w: 1600, h: 902 }
 ];
+
+// Responsive WebP sources (built by scripts/make_webp.sh) with the JPEG as fallback
+window.radiumPicture = (b, sizes, attrs) => `<picture>
+            <source type="image/webp" sizes="${sizes}" srcset="assets/img/webp/${b.file}-640.webp 640w, assets/img/webp/${b.file}-1024.webp 1024w, assets/img/webp/${b.file}-${b.w}.webp ${b.w}w">
+            <img src="assets/img/${b.file}.jpg" width="${b.w}" height="${b.h}" ${attrs}>
+          </picture>`;
